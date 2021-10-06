@@ -1,0 +1,109 @@
+.add-new-category-row{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin-top : 10px;
+}
+
+.accept-new-category-icon{
+    font-size : 40px;
+    color : #3f327a !important;
+    cursor: pointer;
+}
+
+
+.new-category-input{
+    margin-top : 4px !important;
+    height : 31.25 !important;
+    border : none !important;
+}
+
+.ant-input:active, .ant-input:focus, .ant-input:hover{
+    box-shadow: none !important;
+    box-shadow: 0px 0px 5px #d0cff9 !important;
+    outline : none !important;
+    border-color : #d0cff9;
+
+}
+
+
+.category-delete-icon{
+    color : #7860dc;
+    font-size : 10px !important;
+}
+
+
+.category-item:hover + .category-delete-icon{
+    visibility: visible !important;
+}
+
+
+.delete-icon{
+    color : gray;
+    font-size : 20px !important;
+}
+
+
+.delete-icon:hover{
+    color : #b49dcb;
+    cursor : pointer;
+}
+
+
+.category-delete-icon:hover{
+    visibility: visible !important;
+}
+
+
+.category-item-row{
+    height : 0px;
+    display: flex;
+    align-items: flex-start;
+    padding-bottom : 15px;
+}
+
+
+.category-item-row:hover{
+
+}
+
+
+
+
+.category-item-name{
+    margin-right : 15px;
+}
+
+
+
+
+
+.show-categorys{
+    overflow-y : scroll;
+    overflow-x : hidden;
+    height : 43%;
+    margin-top : 40px;
+
+}
+
+
+::-webkit-scrollbar{
+    width : 10px;
+    color : yellow;
+}
+
+
+::-webkit-scrollbar-track{
+    background-color : #d4d4ce;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color : rgb(190, 190, 190);
+    border-radius: 5px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color : #b49dcb;
+    transition : 5s !important;
+}

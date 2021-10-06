@@ -1,0 +1,108 @@
+@font-face {
+    font-family: "yekan";
+    src: url("../font/yekan/Yekan Bakh EN 03 Light.ttf") format("woff2"),
+         url("../font/yekan/Yekan Bakh EN 03 Light.ttf") format("woff");
+}
+
+
+body{
+    overflow: hidden;
+}
+
+.profile-container{
+    display: flex;
+}
+
+.todo-background{
+    width: 60%;
+    margin-left : auto;
+    margin-right : auto;
+    position : relative;
+}
+
+
+.todo-row{
+    height: 70%;
+    margin-top: 20px;
+}
+
+
+.todo-col{
+    background-color: #40337b;
+    color: white;
+    font-size : 25px;
+    font-family: yekan;
+    border-radius: 3px;
+
+}
+
+
+.add-todo-button{
+    background-color : #d0cff9;
+    font-family: yekan;
+    font-size : 15px;
+    color : #7860dc;
+    margin-top : 10px;
+}
+
+.add-todo-button:hover, .add-todo-button:active, .add-todo-button:focus{
+    background-color : #d0cff9;
+    font-family: yekan;
+    font-size : 15px;
+    color : #7860dc;
+    margin-right: auto;
+    border-color : #3f327a !important;
+}
+
+.background-top-row{
+    height: 50px;
+}
+
+
+.add-task-modal{
+    font-family: yekan;
+}
+
+
+.ant-modal-title{
+    font-weight : 1000;
+}
+
+
+.submit-task-form{
+    background-color: #40337b;
+    color : white;
+    border-radius: 4px;
+    border : none;
+
+}
+
+.submit-task-form:focus, .submit-task-form:active, .submit-task-form:hover{
+    background-color : #7860dc;
+    color : white;
+    border-radius: 4px;
+    background-color : #7860dc;
+
+}
+
+
+
+.todo-navbar{
+    width: 20%;
+    height: 100vh;
+    background-color: #f1f0fe;
+    margin-left : auto;
+    box-shadow: -2px 0px 15px gray;
+}
+
+
+
+.todo-main{
+    background-color: #f1f0fe;
+    position: absolute;
+    margin-top : -360px;
+    width : 90%;
+    height: 80%;
+    right : 0;
+    border-radius: 2px;
+}

@@ -1,0 +1,15 @@
+dj-rest-auth
+Django
+django-allauth
+django-filter
+django-rest-auth
+djangorestframework
+djangorestframework-jwt
+djangorestframework-simplejwt
+mysql-connector
+mysql-connector-python
+mysqlclient
+Pillow
+requests
+
+

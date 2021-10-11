@@ -79,4 +79,10 @@ class Category(models.Model):
     name    = models.CharField(max_length=200)
     count   = models.IntegerField(null = True, blank = True, default= 0)
     user    = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "which_user", null = True, blank = True)
-    #todo    = models.ForeignKey(Todo, on_delete=models.CASCADE, related_name = "whic_todo", null = True, blank = )
+    pinned  = models.BooleanField(default = False)
+    todo    = models.ForeignKey(Todo, on_delete=models.CASCADE, related_name = "whic_todo", null = True, blank = True)
+    date    = models.DateTimeField(auto_now_add = True, blank = True, null = True)
+
+
+    class Meta:
+        ordering = ["-pinned", "date"]

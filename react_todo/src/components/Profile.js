@@ -14,7 +14,6 @@ const Profile = ()=>{
     const [modal, setModal] = useState(false);
     const [form] = Form.useForm();
     const [alert, setAlert] = useState("none");
-    const [categoryName, setCategoryName] = useState();
     const [user, setUser] = useState();
 
 
@@ -55,7 +54,6 @@ const Profile = ()=>{
 
                 .then(res=>{
                     setUser(res.data.username)
-                    console.log(res.data.usernamex  )
                     cookies.set("user", `${res.data.pk}`)
 
                 })
@@ -114,8 +112,10 @@ const Profile = ()=>{
 
 
 
+
     return(
         <React.Fragment>
+
             <ConfigProvider direction = "rtl">
                 <Modal visible = {modal}
                     title = "افزودن وظیفه"

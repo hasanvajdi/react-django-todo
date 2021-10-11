@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "yekan";
+    src: url("../font/yekan/Yekan Bakh EN 03 Light.ttf") format("woff2"),
+         url("../font/yekan/Yekan Bakh EN 03 Light.ttf") format("woff");
+}
+
 .add-new-category-row{
     display: flex;
     flex-direction: row-reverse;
@@ -63,15 +69,14 @@
 }
 
 
-.category-item-row:hover{
 
+.category-item{
+    text-overflow: hidden !important;
 }
-
-
-
 
 .category-item-name{
     margin-right : 15px;
+    text-overflow: hidden !important;
 }
 
 
@@ -97,13 +102,57 @@
     background-color : #d4d4ce;
 }
 
+
 ::-webkit-scrollbar-thumb{
     background-color : rgb(190, 190, 190);
     border-radius: 5px;
 
 }
 
+
 ::-webkit-scrollbar-thumb:hover{
     background-color : #b49dcb;
     transition : 5s !important;
+}
+
+
+.category-text-icon{
+    height : 18px;
+}
+
+
+.category-text-icon:hover > * {
+    color : #403378;
+}
+
+.category-pop-icon{
+    font-size : 17px;
+    margin-top : -50px !important;
+    cursor : pointer;
+}
+
+
+.category-pop-text{
+    font-family: yekan;
+    margin-right : 5px;
+    font-size : 15px;
+    margin-bottom : 20px;
+    cursor : pointer;
+    height : 10px;
+}
+
+
+.submit-edit-category{
+    background-color : #00a900;
+    color : white;
+    border-radius : 3px !important;
+}
+
+.submit-edit-category:hover{
+    background-color : green;
+    color : white;
+    box-shadow : none !important;
+    border-color : green;
+    outline : none !important;
+
 }

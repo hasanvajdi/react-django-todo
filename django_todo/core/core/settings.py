@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo',
     'corsheaders',
+    'django_jalali',
 
 
     #dj_rest_auth config
@@ -105,7 +106,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'friday',
+        'NAME': 'todo',
         'PASSWORD' : "99609970",
         'USER' : 'root'
     }

@@ -3,20 +3,45 @@ import uuid
 import jdatetime
 from datetime import datetime
 from django.contrib.auth.models import User
+from django_jalali.db import models as jmodels
+
+
+
+
+
+class Category(models.Model):
+    uuid    = models.UUIDField(editable = False, primary_key=True, default=uuid.uuid4)
+    name    = models.CharField(max_length=200)
+    count   = models.IntegerField(null = True, blank = True, default= 0)
+    user    = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "which_user", null = True, blank = True)
+    pinned  = models.BooleanField(default = False)
+    date    = models.DateTimeField(auto_now_add = True, blank = True, null = True)
+
+
+
+    class Meta:
+        ordering = ["-pinned", "date"]
+
 
 
 
 class Todo(models.Model):
+    objects = jmodels.jManager()
     uuid            = models.UUIDField(primary_key=True, 
-                                    editable=False,
-                                    default=uuid.uuid4
-                                    )
+                                       editable=False,
+                                       default=uuid.uuid4)
     title           = models.CharField(max_length=200, blank=False)
     description     = models.TextField(blank=False, null = True)
-    category        = models.CharField(max_length=200, blank = True, null = True)
-    date            = models.CharField(max_length=200, blank=True, default=jdatetime.datetime.now().date())
     time            = models.CharField(max_length=200, blank=True, default=datetime.now().time())
     user            = models.ForeignKey(User, on_delete=models.CASCADE)
+    category        = models.ForeignKey(Category, on_delete = models.CASCADE, blank = True, null = True)
+    date            = jmodels.jDateField(blank = True, null = True, auto_now_add = True)
+
+    
+   
+    class Meta:
+        ordering = ["-date"]
+    
 
     
     def time(self):
@@ -45,7 +70,7 @@ class Todo(models.Model):
 
         return new_number
         
-    def date(self):
+    def date2(self):
         number =  (str(self.date)).replace("-", "/")
 
         en_num = {
@@ -74,15 +99,3 @@ class Todo(models.Model):
 
 
 
-class Category(models.Model):
-    uuid    = models.UUIDField(editable = False, primary_key=True, default=uuid.uuid4)
-    name    = models.CharField(max_length=200)
-    count   = models.IntegerField(null = True, blank = True, default= 0)
-    user    = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "which_user", null = True, blank = True)
-    pinned  = models.BooleanField(default = False)
-    todo    = models.ForeignKey(Todo, on_delete=models.CASCADE, related_name = "whic_todo", null = True, blank = True)
-    date    = models.DateTimeField(auto_now_add = True, blank = True, null = True)
-
-
-    class Meta:
-        ordering = ["-pinned", "date"]

@@ -1,0 +1,106 @@
+
+@font-face {
+    font-family: "yekan";
+    src: url("../font/yekan/Yekan Bakh EN 03 Light.ttf") format("woff2"),
+         url("../font/yekan/Yekan Bakh EN 03 Light.ttf") format("woff");
+}
+
+
+body{
+    font-family: yekan;
+}
+
+.navbar_container{
+    width : 100%;
+    height : 100vh;
+    background-color : #f1f0fe;
+    box-shadow: 5px 5px 8px lightgray;
+    display: flex;
+}
+
+
+.HomeSvg{
+    height : 600px;
+    width : 800px;
+}
+
+
+.navs{
+    margin-right : 40px;
+    display: flex;
+    direction: rtl;
+    margin-top : 60px;
+}
+
+.nav{
+    margin-right : 40px;
+    font-size : 18px;
+    font-weight : bold;
+}
+
+
+.active{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.active::after{
+    content: "•";
+    color : #5e35b2;
+    background-color : yellow;
+    height : 0px;
+}
+
+
+.right-side-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.manage-text{
+    background-color :#cec8db;
+    width : 250px;
+    padding : 15px;
+    border-radius : 5px;
+    direction : rtl;
+    text-align : center;
+    color : #5e35b2;
+    font-size : 16px;
+    font-weight : bold;
+    box-shadow: 0px 0px 10px rgb(217, 217, 217);
+    margin-top : 30px;
+    line-height: 2;
+}
+
+
+.task-system{
+    color : black;
+    width : 350px;
+    padding : 15px;
+    direction : rtl;
+    text-align : right;
+    color : #5e35b2;
+    font-size : 18px;
+    font-weight : bold;
+    line-height: 3;
+    margin-top : 70px;
+}
+
+
+
+.manage-start{
+    font-size : 20px;
+    border-bottom : 2px solid black;
+    padding-bottom : 2px;
+    color : black;
+    cursor : pointer;
+}
+
+.manage-start:hover{
+    color : #5e35b2;
+    border-color : #5e35b2
+}

@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import Login from './Login'
 import Signup from './Signup'
 import Profile from './Profile'
+import Home from './Home'
 
 
 
@@ -30,6 +31,10 @@ function App() {
 
         <Route path = "/profile">
             <Profile />
+        </Route>
+
+        <Route path = "/home">
+            <Home />
         </Route>
       </Switch>
     </Router>

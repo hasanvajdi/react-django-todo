@@ -41,7 +41,7 @@ const Login = ()=>{
             .then(result=>{
                 window.location.replace("/profile");
             })
-            
+
             .catch(err=>{
                 error()
             })

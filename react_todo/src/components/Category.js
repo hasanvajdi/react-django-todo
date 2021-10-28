@@ -1,20 +1,22 @@
 
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Row, Col, Divider, Popover, Modal, Button, Form, Input} from 'antd';
 import 'antd/dist/antd.css';
 import './../static/css/category.css';
 import {AiOutlineMore, AiOutlineEdit, AiOutlineDelete, AiOutlinePushpin} from "react-icons/ai";
 import {WarningTwoTone,} from "@ant-design/icons";
 import axios from 'axios'
-export const contextCategoryList = React.createContext();
+import {CategoryContext} from './Profile'
+import Cookies from  'universal-cookie';
 
 
 const Category = (props)=>{
+    const cookies = new Cookies();
     const [popOver, setPopOver] = useState(false);
     const [modal, setModal] = useState(false)
     const [textEdit, setTextEdit] = useState();
     const [editModal, setEditModal] = useState(false);
-
+    const {setTodoItems, setCategoryTitle} = useContext(CategoryContext)
     let uuid  = props.item.uuid
 
 
@@ -24,7 +26,12 @@ const Category = (props)=>{
 
 
     const editHandler = ()=>{
-        axios.get(`http://localhost:8000/category/${uuid}/`)
+        let access_token = cookies.get("access")
+        axios.get(`http://localhost:8000/category/${uuid}/`, {
+            headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                }
+        })
         .then(result=>{
             setTextEdit(result.data.name)
             setPopOver(false)
@@ -41,16 +48,30 @@ const Category = (props)=>{
 
 
     const pinHandler = ()=>{
-        console.log("yes")
-        axios.get(`http://localhost:8000/category/${uuid}/`)
+        let access_token = cookies.get("access")
+        axios.get(`http://localhost:8000/category/${uuid}/`, {
+            headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                }
+        })
         .then(result=>{
             axios.put(`http://localhost:8000/category/${uuid}/`,
                 {"pinned" : `${!result.data.pinned}`, "name" : `${result.data.name}`},
-                {headers : {"Content-Type" : "application/json"}}
+                {
+                    headers : {
+                        "Content-Type" : "application/json",
+                        "Authorization": 'Bearer ' + access_token,
+
+                    }
+                }
             )
 
             .then(res=>{
-                axios.get("http://localhost:8000/category/")
+                axios.get("http://localhost:8000/category/", {
+                    headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                    }
+                })
                 .then(result=>{
                     props.func(result.data)
                 })
@@ -64,10 +85,20 @@ const Category = (props)=>{
 
 
     const deleteCategory = ()=>{
-        axios.delete(`http://localhost:8000/category/${uuid}/`)
+        let access_token = cookies.get("access")
+        axios.delete(`http://localhost:8000/category/${uuid}/`, {
+            headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                }
+        })
         .then(result=>{
             setModal(false)
-            axios.get("http://localhost:8000/category/")
+            axios.get("http://localhost:8000/category/",
+            {
+                headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                }
+            })
             .then(result=>{
                 props.func(result.data)
             })
@@ -78,19 +109,47 @@ const Category = (props)=>{
 
 
     const submitEdit = (e)=>{
+        let access_token = cookies.get("access")
         let text = {"name" : `${e.edittext}`}
         axios.put(`http://localhost:8000/category/${uuid}/`, text, {
-            headers : {"Content-Type" : "application/json"}
+            headers : {
+                "Content-Type" : "application/json",
+                "Authorization": 'Bearer ' + access_token,
+            }
         })
         .then(result=>{
             setEditModal(false)
-            axios.get("http://localhost:8000/category/")
+            axios.get("http://localhost:8000/category/",{
+                headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                }
+            })
             .then(result=>{
                 props.func(result.data)
             })
         })
     }
 
+
+    const showCategoryItems = ()=>{
+        let access_token = cookies.get("access")
+        axios.get(`http://localhost:8000/listitem/${uuid}/`, {
+            headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                }
+        })
+        .then(res=>{
+            setTodoItems(res.data)
+            axios.get(`http://localhost:8000/category/${uuid}/`, {
+                headers: {
+                    "Authorization": 'Bearer ' + access_token,
+                }
+            })
+            .then(category=>{
+                setCategoryTitle(category.data.name)
+            })
+        })
+    }
 
     return(
             <React.Fragment>
@@ -138,7 +197,7 @@ const Category = (props)=>{
 
                 <Row className = "category-item-row">
 
-                    <Col span = {22} className = "category-item">
+                    <Col span = {22} className = "category-item" onClick = {showCategoryItems}>
                         <span className = "category-item-name">{props.item.name}</span>
                     </Col>
 
